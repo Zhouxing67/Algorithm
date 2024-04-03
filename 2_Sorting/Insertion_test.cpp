@@ -1,10 +1,19 @@
 #include"Insertion.h"
 #include "sort_test_util.h"
+#include "../time_record.h"
 
 int main()
 {
-    int randow_[10000] = { 0 };
+    int* randow_ = new int[DEAFAULT_LEN];
     generateRandomArray(randow_, 1, 99999);
-    Insertion::insort(randow_, 10000);
-    cout << isSorted(randow_);
+
+    //test
+    {
+        time_recorder recorder;
+        Insertion::insort(randow_, DEAFAULT_LEN);
+    }
+
+
+    cout << (isSorted(randow_) ? "true" : "false") << endl;
+    delete[] randow_;
 }

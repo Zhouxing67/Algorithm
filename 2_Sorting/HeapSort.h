@@ -1,6 +1,6 @@
 #ifndef HEAPSORT_H_INCLUDED
 #define HEAPSORT_H_INCLUDED
-#include"func.h"
+#include"../base_include.h"
 
 /*
 堆排序

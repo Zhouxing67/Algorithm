@@ -6,7 +6,7 @@
 #include <ctime>
 using std::size_t;
 
-const size_t DEAFAULT_LEN = 10000;
+const size_t DEAFAULT_LEN = 1000000;
 
 
 template<typename T>
@@ -27,7 +27,7 @@ void generateRandomArray(T arr[], T minVal, T maxVal, size_t size = DEAFAULT_LEN
 {
     for (size_t i = 0; i < size; ++i) {
         static std::mt19937 generator(time(0));
-        static std::uniform_int_distribution<int> distribution(minVal, maxVal);
+        static std::uniform_int_distribution<T> distribution(minVal, maxVal);
         arr[i] = distribution(generator);
     }
 }

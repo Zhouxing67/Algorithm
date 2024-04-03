@@ -1,8 +1,19 @@
 #include"Quick3way.h"
+#include "sort_test_util.h"
+#include "../time_record.h"
 
-int main(){
-    vector<int> test={5,4,4,4,44,-1,2,7};
-    Quick3way::q3sort(test);
-    for(auto i:test)
-        cout<<i<<" "<<endl;
+int main()
+{
+    int* randow_ = new int[DEAFAULT_LEN];
+    generateRandomArray(randow_, 1, 99999);
+
+    //test
+    {
+        time_recorder recorder;
+        Quick3way::q3sort(randow_, DEAFAULT_LEN);
+    }
+
+
+    cout << (isSorted(randow_) ? "true" : "false") << endl;
+    delete[] randow_;
 }

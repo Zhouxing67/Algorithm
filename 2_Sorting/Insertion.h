@@ -1,6 +1,6 @@
 #ifndef INSERTION_H_INCLUDED
 #define INSERTION_H_INCLUDED
-#include "../func.h"
+#include "../base_include.h"
 class Insertion {
     //class 默认private
 public:
