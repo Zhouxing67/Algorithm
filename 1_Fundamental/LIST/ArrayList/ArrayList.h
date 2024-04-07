@@ -2,9 +2,8 @@
 #define ARRAYLIST
 
 #include <cstddef>
-#include "Utility.h"
+#include "../Utility.h"
 #include <utility>
-#include "memory"
 
 using alg4::copy;
 using alg4::Allocator;
@@ -60,10 +59,10 @@ namespace alg4
             return alloc_.allocate(capacity);
         }
 
-        void deallocate()
+        void deallocate() noexcept
         {
             for (auto desc = end_; desc != begin_;)
-                alloc_.destory(--desc);
+                alloc_.destroy(--desc);
             alloc_.deallocate(begin_, capacity());
             begin_ = end_ = cap_ = nullptr;
         }
@@ -74,7 +73,7 @@ namespace alg4
             end_ = begin_ + newlen;
             cap_ = begin_ + newcapacity;
         }
-        void copy_tool(const ArrayList& other)
+        void copy_tool(const ArrayList& other) noexcept
         {
             begin_ = other.begin_;
             end_ = other.end_;
@@ -137,6 +136,7 @@ namespace alg4
         }
         return *this;
     }
+
     template <typename T, typename Alloc>
     ArrayList<T, Alloc>& ArrayList<T, Alloc>::operator=(ArrayList&& other) noexcept
     {

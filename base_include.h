@@ -17,7 +17,10 @@
 #include<unordered_set>
 #include <utility>
 #include<algorithm>
+#include<memory>
+
 using std::cout;
+using std::cin;
 using std::endl;
 using std::string;
 using std::stack;

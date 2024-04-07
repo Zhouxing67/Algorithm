@@ -1,5 +1,5 @@
 #include"ArrayList.h"
-using mtd::ArrayList;
+using alg4::ArrayList;
 int main()
 {
     ArrayList<int> myList;

@@ -19,7 +19,10 @@ template <typename T>
         using difference_type = std::ptrdiff_t;
 
         Allocator() = default;
-        ~Allocator() { std::cout << "alloc_count_  == " << alloc_count_ << std::endl; }
+        ~Allocator()
+        {
+            //std::cout << "alloc_count_  == " << alloc_count_ << std::endl;
+        }
 
         template <typename U, typename... Args>
         void construct(U *p, Args &&...args)
@@ -47,14 +50,14 @@ template <typename T>
         pointer allocate(size_type n)
         {
             alloc_count_ += n;
-            std::cout << "Allocator::allocate OBJ Size :" << n << std::endl;
+            //std::cout << "Allocator::allocate OBJ Size :" << n << std::endl;
             return static_cast<pointer>(operator new(sizeof(value_type) * n));
         }
 
         void deallocate(pointer p, size_type objects_num)
         {
             alloc_count_ -= objects_num;
-            std::cout << "Allocator::deallocate :" << objects_num << std::endl;
+            //std::cout << "Allocator::deallocate :" << objects_num << std::endl;
             if(p != nullptr)
                 operator delete (p);
         }

@@ -1,13 +1,11 @@
 #ifndef LINKLIST
 #define LINKLIST
 #include <functional>
-#include "Utility.h"
-#include "./ArrayList.h"
+#include "../Utility.h"
 #include <string>
 #include <cassert>
 
 using alg4::Allocator;
-using alg4::ArrayList;
 using std::function;
 
 
@@ -31,7 +29,6 @@ namespace alg4
         void pop_front();
         T& operator[](const int pos);
         T at(const int pos);
-        void print();
         int len() const { return len_; }
 
     private:
@@ -51,33 +48,24 @@ namespace alg4
         };
 
         typedef typename Alloc::template rebind<LinkList<T, Alloc>::Node>::other Node_alloc;
+
         Node* dumyHead_;
         Node* cur_;
         int len_;
 
         static Node_alloc alloc_;
 
-        void free(Node* cur)
-        {
-
-            alloc_.destory(cur);
-            alloc_.deallocate(cur, 1);
-        }
         void free()
         {
             cur_ = dumyHead_;
             while (cur_ != nullptr) {
                 LinkList<T, Alloc>::Node* next = cur_->next_;
-                free(cur_);
+                alloc_.destory(cur_);
+                alloc_.deallocate(cur_, 1);
                 cur_ = next;
             }
         }
-        void move_end()
-        {
-            while (cur_ != nullptr)
-                cur_ = cur_->next_;
-        }
-
+       
         void move_pos(const int pos)
         {
             cur_ = dumyHead_;
@@ -99,7 +87,7 @@ namespace alg4
             alloc_.construct(cur_, other_cur->data_);
             len_ = other.len_;
         }
-        void copy_tools(LinkList&& other) noexcept
+        void move_tools(LinkList&& other) noexcept
         {
             cur_ = other.cur_;
             len_ = other.len_;
@@ -142,13 +130,13 @@ namespace alg4
     template<typename T, typename Alloc>
     LinkList<T, Alloc>::LinkList(LinkList&& other) noexcept
     {
-        copy_tools(std::move(other));
+        move_tools(std::move(other));
     }
     template<typename T, typename Alloc>
     LinkList<T, Alloc>& LinkList<T, Alloc>::operator=(LinkList&& other) noexcept
     {
         free();
-        copy_tools(std::move(other));
+        move_tools(std::move(other));
     }
 
     template<typename T, typename Alloc>
@@ -169,6 +157,7 @@ namespace alg4
         insert(value, len());
     }
     template<typename T, typename Alloc>
+
     void LinkList<T, Alloc>::remove(const int pos)
     {
         if (pos > len() - 1 || pos < 0)
@@ -177,7 +166,8 @@ namespace alg4
         auto temp = cur_->next_;
         cur_->next_ = cur_->next_->next_;
         len_--;
-        free(temp);
+        alloc_.destory(temp);
+        alloc_.deallocate(temp, 1);
     }
     template<typename T, typename Alloc>
     void LinkList< T, Alloc>::pop_front()
@@ -207,17 +197,6 @@ namespace alg4
             throw std::runtime_error("Invalid pos");
         move_pos(pos);
         return cur_->data_;
-    }
-
-    template<typename T, typename Alloc>
-    void LinkList<T, Alloc>::print()
-    {
-        cur_ = dumyHead_->next_;
-        while (cur_ != nullptr) {
-            std::cout << cur_->data_ << " --> ";
-            cur_ = cur_->next_;
-        }
-        std::cout << std::endl;
     }
 }
 #endif

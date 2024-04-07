@@ -2,6 +2,7 @@
 #define TIME_COUNT_INCLUDE
 #include <chrono>
 #include <iostream>
+
 using std::chrono::steady_clock;
 using std::chrono::seconds;
 using std::chrono::duration_cast;
@@ -21,7 +22,7 @@ public:
 
     ~time_recorder()
     {
-        if (diff_n_) {
+    if (!diff_n_) {
             auto time_diff = diff();
             cout << "time_diff:  " << time_diff.count() << "  millisecondss" << endl;
         }

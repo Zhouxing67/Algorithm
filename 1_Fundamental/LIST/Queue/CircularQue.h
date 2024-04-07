@@ -1,5 +1,5 @@
-#ifndef DEQUE
-#define DEQUE
+#ifndef CIRQUE_INCLUDE_H
+#define CIRQUE_INCLUDE_H
 #include <cassert>
 #include <vector>
 namespace alg4
