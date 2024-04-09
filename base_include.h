@@ -4,7 +4,7 @@
 #include<string.h>
 #include<stdio.h>
 #include<iostream>
-#include <fstream>
+#include<fstream>
 #include<string>
 #include<set>
 #include<stack>
@@ -15,7 +15,8 @@
 #include<map>
 #include<unordered_map>
 #include<unordered_set>
-#include <utility>
+#include<utility>
+#include<functional>
 #include<algorithm>
 #include<memory>
 
@@ -33,6 +34,7 @@ using std::unordered_map;
 using std::unordered_set;
 using std::queue;
 using std::priority_queue;
+using std::pair;
 
 
 #endif // __FUNC__

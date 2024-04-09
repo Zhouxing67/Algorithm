@@ -58,8 +58,7 @@ template <typename T>
         {
             alloc_count_ -= objects_num;
             //std::cout << "Allocator::deallocate :" << objects_num << std::endl;
-            if(p != nullptr)
-                operator delete (p);
+            operator delete (p);
         }
 
     private:
