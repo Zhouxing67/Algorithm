@@ -1,12 +1,27 @@
-#ifndef INSERTION_H_INCLUDED
-#define INSERTION_H_INCLUDED
-#include "../base_include.h"
+#ifndef SIMPLE_SORT_INCLUDE_H
+#define SIMPLE_SORT_INCLUDE_H
 #include "Base_sort.h"
 namespace alg4
 {
-    class Insertion {
-        //class 默认private
+    class SimpleSort {
     public:
+        template<typename T>
+        static void bubble_sort(T nums[], size_t size, comparableFunc<T> comp = std::less<T>())
+        {
+            for (size_t i = 0; i < size - 1; i++) {
+                bool isswaped = false;
+                for (size_t j = 0; j < size - i - 1; j++) {
+                    if (comp(nums[j + 1], nums[j]))
+                    {
+                        std::swap(nums[j], nums[j + 1]);
+                        isswaped = true;
+                    }
+                }
+                if (!isswaped)
+                    return;
+            }
+        }
+
         template<typename T>
         static void insert_sort(T nums[], size_t len, comparableFunc<T> comp = std::less<T>())
         {
@@ -38,7 +53,18 @@ namespace alg4
             }
 
         }
+
+        template<typename T>
+        static void select_sort(T nums[], size_t size, comparableFunc<T> comp = std::less<T>())
+        {
+            for (size_t i = 0; i < size; i++) {
+                size_t min = i;
+                for (int j = i + 1; j < size; j++)
+                    min = comp(nums[j], nums[min]) ? j : min;
+                std::swap(nums[i], nums[min]);
+            }
+        }
     };
 }
 
-#endif // INSERTION_H_INCLUDED
+#endif

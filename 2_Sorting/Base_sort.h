@@ -1,5 +1,6 @@
 #ifndef SORT_BASE_INCLUDE_H
 #define SORT_BASE_INCLUDE_H
+#include<functional>
 namespace alg4
 {
     template<typename T>
@@ -8,7 +9,7 @@ namespace alg4
     template<typename T>
     using sortFunc = std::function<void(T[], size_t, comparableFunc<T>)>;
 
-    template<typename T>
-    using RangeType = std::pair<T, T>;
+    // using size_t = unsigned long long;
+    using std::size_t;
 }
 #endif

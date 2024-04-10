@@ -12,24 +12,28 @@ using std::size_t;
 namespace alg4
 {
     const size_t DEAFAULT_LEN = 1000000;
-    const RangeType<int> DEAFAULT_INT_RANGE{ -999999, 999999};
+
+    template<typename T>
+    using RangeType = std::pair<T, T>;
+
+    const RangeType<int> DEAFAULT_INT_RANGE{ -999999, 999999 };
     const RangeType<double> DEAFAULT_double_RANGE{ -999999.0, 999999.0 };
     const RangeType<float> DEAFAULT_FLOAT_RANGE{ -9999.0f, 9999.0f };
     const RangeType<char> DEAFAULT_CHAR_RANGE{ -128, 127 };
 
     class sort_util {
     public:
-        
         template<typename T>
-        static bool isSorted(const T arr[], size_t size = DEAFAULT_LEN)
+        static bool isSorted(const T arr[], size_t size = DEAFAULT_LEN, comparableFunc<T> comp = std::less<T>())
         {
             for (size_t i = 1; i < size; ++i) {
-                if (arr[i] < arr[i - 1]) {
+                if (comp(arr[i], arr[i - 1])) {
                     return false;
                 }
             }
             return true;
         }
+
         // 生成指定范围的随机数组
         template<typename T>
         static void generateRandomArray(T arr[], RangeType<T> range, size_t size = DEAFAULT_LEN)
