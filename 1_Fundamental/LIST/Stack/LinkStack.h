@@ -2,7 +2,7 @@
 #define LINKSTACK_INCLUDE_H
 #include <memory>
 
-namespace alg4
+namespace alg4::list
 {
     template<typename T, typename alloc = std::allocator<T>>
     class LinkStack {

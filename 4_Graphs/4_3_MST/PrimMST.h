@@ -17,7 +17,7 @@ indexQueue 用map<w,weight>实现,保存待遍历的横切边
 
 相比较于Lazy模式  indexPQ中的可达边数量是常数级别
 */
-namespace alg4
+namespace alg4::graph
 {
     class PrimMST {
     private:

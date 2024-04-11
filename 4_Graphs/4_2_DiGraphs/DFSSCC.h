@@ -3,7 +3,7 @@
 #include "Digraph.h"
 #include "DFSorder.h"
 
-namespace alg4
+namespace alg4::graph
 {
     class KosarajuSSC {
     private:

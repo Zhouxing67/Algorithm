@@ -2,7 +2,7 @@
 #include"TopoLongestPath.h"
 #include"BellmanFordSP.h"
 
-using namespace alg4;
+using namespace alg4::graph;
 
 int main()
 {
@@ -16,8 +16,8 @@ int main()
     cout << endl;
     int startV = 0;
     int endV = 6;
-    DijkstraSP* dSP = new DijkstraSP(G);
-    dSP->getSP(G, startV);
+    DijkstraSP* dSP = new DijkstraSP(G, startV);
+    dSP->pathTo(endV);
     cout << "hasPathTo endVertex=" << endV << " is " << (bool)dSP->hasPathTo(endV) << endl;
     double totalW = 0.0;
     for (DiEdge e : dSP->pathTo(endV)) {

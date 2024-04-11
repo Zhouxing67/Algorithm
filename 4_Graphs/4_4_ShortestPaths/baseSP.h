@@ -3,7 +3,7 @@
 #include"DiEdge.h"
 #include"EdgeWeightedDigraph.h"
 
-namespace alg4
+namespace alg4::graph
 {
     class baseSP {
     protected:

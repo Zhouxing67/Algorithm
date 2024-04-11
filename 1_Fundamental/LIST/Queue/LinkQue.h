@@ -2,7 +2,7 @@
 #define LINKQUE_INCLUDE_H
 
 #include<memory>
-namespace alg4
+namespace alg4::list
 {
     template<typename T, typename alloc = std::allocator<T>>
     class LinkQue {
@@ -14,15 +14,13 @@ namespace alg4
 
             Node() = default;
             Node(const T& value) : data_(value), next_(nullptr) {}
-            Node(const Node& other) = delete;
-            Node& operator=(const Node& other) = delete;
             ~Node()
             {
                 next_ = nullptr;
             }
         };
 
-        typedef typename std::allocator_traits<alloc>::template rebind_alloc<typename LinkQue<T, alloc>::Node> Node_alloc;
+        using Node_alloc = typename std::allocator_traits<alloc>:: template rebind_alloc<typename LinkQue<T, alloc>::Node>;
         Node* front_;
         Node* aft_;
         static Node_alloc alloc_;

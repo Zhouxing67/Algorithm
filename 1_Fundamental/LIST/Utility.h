@@ -4,7 +4,7 @@
 #include <iostream>
 #include <cstdlib>
 
-namespace alg4
+namespace alg4::list
 {
 template <typename T>
     class Allocator

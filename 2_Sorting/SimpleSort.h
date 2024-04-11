@@ -1,12 +1,12 @@
 #ifndef SIMPLE_SORT_INCLUDE_H
 #define SIMPLE_SORT_INCLUDE_H
 #include "Base_sort.h"
-namespace alg4
+namespace alg4::sort
 {
     class SimpleSort {
     public:
         template<typename T>
-        static void bubble_sort(T nums[], size_t size, comparableFunc<T> comp = std::less<T>())
+        static void bubble_sort(T nums[], const size_t size, comparableFunc<T> comp = std::less<T>())
         {
             for (size_t i = 0; i < size - 1; i++) {
                 bool isswaped = false;
@@ -23,9 +23,9 @@ namespace alg4
         }
 
         template<typename T>
-        static void insert_sort(T nums[], size_t len, comparableFunc<T> comp = std::less<T>())
+        static void insert_sort(T nums[], const size_t size, comparableFunc<T> comp = std::less<T>())
         {
-            for (size_t i = 1; i < len; i++) {
+            for (size_t i = 1; i < size; i++) {
                 size_t j = i;
                 T val = nums[i];
                 for (; j >= 1 && comp(val, nums[j - 1]); j--)
@@ -35,14 +35,14 @@ namespace alg4
         }
 
         template<typename T>
-        static void shell_sort(T nums[], size_t len, comparableFunc<T> comp = std::less<T>())
+        static void shell_sort(T nums[], const size_t size, comparableFunc<T> comp = std::less<T>())
         {
             int step = 1;
-            while (step < len / 3)
+            while (step < size / 3)
                 step = step * 3 + 1;
 
             while (step > 0) {
-                for (size_t i = 1; i < len; i++) {
+                for (size_t i = 1; i < size; i++) {
                     T val = nums[i];
                     size_t j = i;
                     for (; j >= step && comp(val, nums[j - step]); j -= step)
@@ -55,7 +55,7 @@ namespace alg4
         }
 
         template<typename T>
-        static void select_sort(T nums[], size_t size, comparableFunc<T> comp = std::less<T>())
+        static void select_sort(T nums[], const size_t size, comparableFunc<T> comp = std::less<T>())
         {
             for (size_t i = 0; i < size; i++) {
                 size_t min = i;

@@ -2,7 +2,7 @@
 #define DIGRAPH_H_INCLUDED
 #include "../../base_include.h"
 
-namespace alg4
+namespace alg4::graph
 {
     class Digraph {
     private:

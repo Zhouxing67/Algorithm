@@ -2,7 +2,7 @@
 #define NEGATIVE_CYCLE_FINDER
 #include "EdgeWeightedDigraph.h"
 
-namespace alg4
+namespace alg4::graph
 {
     class negativeCycleFinder {
     private:

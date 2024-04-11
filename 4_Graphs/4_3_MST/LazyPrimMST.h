@@ -10,7 +10,7 @@ idea: 随机起点 + 可到达边的最小值加入tree
 note: 删除无效边(可达边的两个节点都已经标记)
 */
 
-namespace alg4
+namespace alg4::graph
 {
     class LazyPrimMST {
     private:

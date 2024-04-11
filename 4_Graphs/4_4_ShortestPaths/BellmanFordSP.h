@@ -15,7 +15,7 @@ queue1 保存即将被放松的顶点
 bool[] 判断顶点是否已经存在于queue1
 */
 
-namespace alg4
+namespace alg4::graph
 {
     class BellmanSP : public baseSP{
     private:

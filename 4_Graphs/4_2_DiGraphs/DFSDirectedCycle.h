@@ -7,7 +7,7 @@
 不存在环路 topological order算法的前提
 */
 
-namespace alg4
+namespace alg4::graph
 {
     class DFSDirectedCycle {
     private:

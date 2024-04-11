@@ -6,7 +6,7 @@
 小树加入大树 从而减少树的高度
 */
 
-namespace alg4
+namespace alg4::graph
 {
     class UnionFind {
     private:

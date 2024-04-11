@@ -7,7 +7,7 @@
 边
 */
 
-namespace alg4
+namespace alg4::graph
 {
     class Edge {
     private:

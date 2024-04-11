@@ -5,11 +5,11 @@
 #include <string>
 #include <cassert>
 
-using alg4::Allocator;
+using alg4::list::Allocator;
 using std::function;
 
 
-namespace alg4
+namespace alg4::List
 {
 
     template <typename T, typename Alloc = Allocator<T>>

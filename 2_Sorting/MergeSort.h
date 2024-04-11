@@ -2,7 +2,7 @@
 #define MERGE_SORT_INCLUDE_H
 #include "Base_sort.h"
 
-namespace alg4
+namespace alg4::sort
 {
     class MergeSort {
     private:
@@ -39,7 +39,7 @@ namespace alg4
 
     public:
         template<typename T>
-        static void merge_sort(T nums[], size_t size, comparableFunc<T> comp = std::less<T>())
+        static void merge_sort(T nums[], const size_t size, comparableFunc<T> comp = std::less<T>())
         {
             T* temp = new T[size];
             sort<T>(nums, temp, 0, size - 1, comp);

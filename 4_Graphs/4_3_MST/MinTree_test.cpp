@@ -3,7 +3,7 @@
 #include"PrimMST.h"
 #include"KruskalMST.h"
 
-using namespace alg4;
+using namespace alg4::graph;
 
 int main()
 {

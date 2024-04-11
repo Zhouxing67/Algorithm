@@ -2,7 +2,7 @@
 #include"DFSCC.h"
 #include"BFSPath.h"
 
-using namespace alg4;
+using namespace alg4::graph;
 
 /* int initG()
 {

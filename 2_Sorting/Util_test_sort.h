@@ -9,7 +9,7 @@
 #include "Base_sort.h"
 using std::size_t;
 
-namespace alg4
+namespace alg4::sort
 {
     const size_t DEAFAULT_LEN = 1000000;
 

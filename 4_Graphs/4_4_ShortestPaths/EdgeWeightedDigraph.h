@@ -4,7 +4,7 @@
 /*
 加权 有向图的定义
 */
-namespace alg4
+namespace alg4::graph
 {
     class EdgeWeightedDigraph {
     private:

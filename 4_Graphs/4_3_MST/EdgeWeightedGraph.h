@@ -5,7 +5,7 @@
 /*
 实现带带权重的无向图
 */
-namespace alg4
+namespace alg4::graph
 {
     class EdgeWeightedGraph {
     private:

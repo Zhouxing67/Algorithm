@@ -7,7 +7,7 @@
 DFS代表从某一个节点出发 能到达的所有节点都会被标记
 */
 #include"Graph.h"
-namespace alg4
+namespace alg4::graph
 {
     class DFSCC {
     private:

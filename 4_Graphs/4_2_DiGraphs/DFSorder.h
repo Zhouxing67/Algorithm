@@ -2,7 +2,7 @@
 #define DFSORDER_INCLUDE_H
 #include "Digraph.h"
 
-namespace alg4
+namespace alg4::graph
 {
     class DFSorder {
     private:

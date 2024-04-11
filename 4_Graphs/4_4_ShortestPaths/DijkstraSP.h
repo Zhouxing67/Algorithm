@@ -11,7 +11,7 @@
 3.直到所有顶点都在树或所有非树顶点distTo无限大
 */
 //baseSP为SP的基类，未被定义为虚函数
-namespace alg4
+namespace alg4::graph
 {
     class DijkstraSP : public baseSP {
     private:

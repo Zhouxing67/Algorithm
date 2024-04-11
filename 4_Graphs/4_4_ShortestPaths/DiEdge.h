@@ -5,7 +5,7 @@
 区别于无向边,v->w == v,w具有固定的含义
 API from v to w
 */
-namespace alg4
+namespace alg4::graph
 {
     class DiEdge {
     private:

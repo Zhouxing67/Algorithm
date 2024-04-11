@@ -2,7 +2,7 @@
 #define BFSPATH_H_INCLUDED
 
 #include"traversal_base.h"
-namespace alg4
+namespace alg4::graph
 {
     class BFSPath : public traversalBase{     //父节点
 

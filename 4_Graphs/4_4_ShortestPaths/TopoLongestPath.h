@@ -14,7 +14,7 @@ idea:
 note: 1.将weight全部取相反数  或者2.交换所有大小判断符号
 */
 
-namespace alg4
+namespace alg4::graph
 {
     class TopoLP : public baseSP{
     private:

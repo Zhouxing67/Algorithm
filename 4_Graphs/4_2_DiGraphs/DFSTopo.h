@@ -9,7 +9,7 @@
 BFS是将入度为零的先加入queue
 */
 
-namespace alg4
+namespace alg4::graph
 {
     class DFSTopo {
     public:

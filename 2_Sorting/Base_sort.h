@@ -1,7 +1,7 @@
 #ifndef SORT_BASE_INCLUDE_H
 #define SORT_BASE_INCLUDE_H
 #include<functional>
-namespace alg4
+namespace alg4::sort
 {
     template<typename T>
     using comparableFunc = std::function<bool(T, T)>;
@@ -11,5 +11,7 @@ namespace alg4
 
     // using size_t = unsigned long long;
     using std::size_t;
+
+    using pos_t = long long;
 }
 #endif

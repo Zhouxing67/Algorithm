@@ -2,7 +2,7 @@
 #define TRAVERSAL_BASE
 #include "../../base_include.h"
 #include "Graph.h"
-namespace alg4
+namespace alg4::graph
 {
     class traversalBase {
     protected:

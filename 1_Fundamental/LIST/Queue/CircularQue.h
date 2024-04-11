@@ -2,7 +2,7 @@
 #define CIRQUE_INCLUDE_H
 #include <cassert>
 #include <vector>
-namespace alg4
+namespace alg4::list
 {
     // Copyright(c) 2015-present, Gabi Melman & spdlog contributors.
 // Distributed under the MIT License (http://opensource.org/licenses/MIT)

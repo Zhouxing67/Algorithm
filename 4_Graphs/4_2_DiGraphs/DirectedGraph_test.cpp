@@ -2,7 +2,7 @@
 #include"DFSDirectedCycle.h"
 #include"DFSTopo.h"
 
-using namespace alg4;
+using namespace alg4::graph;
 int main()
 {
     Digraph* G = new Digraph("../../data/tinyDAG.txt");      //tinyDAG无环有向图

@@ -3,7 +3,7 @@
 #include <map>
 
 using std::map;
-namespace alg4
+namespace alg4::graph
 {
     class graph_util {
     public:

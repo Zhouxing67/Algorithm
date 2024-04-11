@@ -9,7 +9,7 @@ note: 相同于不断合并不同的连通分量
 note: unionFind数据结构
 */
 
-namespace alg4
+namespace alg4::graph
 {
     class KruskalMST {
     private:

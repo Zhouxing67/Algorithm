@@ -2,7 +2,7 @@
 #define DFSPATH_H_INCLUDE
 
 #include "traversal_base.h"
-namespace alg4
+namespace alg4::graph
 {
     class DFSPath : public traversalBase{
     private:
