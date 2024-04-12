@@ -3,7 +3,7 @@
 using namespace alg4;
 int main()
 {
-    alg4::LinkQue<int> queue;
+    alg4::list::LinkQue<int> queue;
 
     std::cout << "Pushing elements onto the queue..." << std::endl;
     for (int i = 0; i < 5; ++i) {

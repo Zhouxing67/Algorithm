@@ -1,8 +1,9 @@
 #include"SimpleSort.h"
 #include"MergeSort.h"
-#include "Util_test_sort.h"
 #include"QuickSort.h"
+#include"HeapSort.h"
 
+#include"Util_test_sort.h"
 /*
     重载的函数无法通过函数名确定函数指针；
     这意味着如果一个函数被重载了， 则无法通过其函数名来直接初始化一个std::function对象；
@@ -25,13 +26,15 @@
  */
 
 using namespace alg4::sort;
+using namespace alg4::util;
+using namespace alg4;
 int main()
 {
-    const int len = 1500;
+    const int len = 15000;
     int* randow_ = new int[len];
-    RangeType<int> range{ -1000, 1000 };
+    RangeType<int> range{ -1000, 1000};
 
-    /* sort_util::sort_test(randow_, range, sortFunc<int>(&SimpleSort::shell_sort<int>), len);
+    sort_util::sort_test(randow_, range, sortFunc<int>(&SimpleSort::shell_sort<int>), len);
 
     sort_util::sort_test(randow_, range, sortFunc<int>(&SimpleSort::insert_sort<int>), len);
 
@@ -39,14 +42,13 @@ int main()
 
     sort_util::sort_test(randow_, range, sortFunc<int>(&SimpleSort::bubble_sort<int>), len);
 
-    sort_util::sort_test(randow_, range, sortFunc<int>(&MergeSort::merge_sort<int>), len);*/
+    sort_util::sort_test(randow_, range, sortFunc<int>(&MergeSort::merge_sort<int>), len);
 
-    void (*qsort)(int[], size_t, comparableFunc<int>) = QuickSort::qsort<int>;
-    sort_util::sort_test(randow_, range, sortFunc<int>(qsort), len);
+    sort_util::sort_test(randow_, range, sortFunc<int>(&QuickSort::quick_sort<int>), len);
     
-    void (*q3sort)(int[], size_t, comparableFunc<int>) = QuickSort::q3sort<int>;
-    sort_util::sort_test(randow_, range, sortFunc<int>(q3sort), len);
+    sort_util::sort_test(randow_, range, sortFunc<int>(&QuickSort::quick3way_sort<int>), len);
 
+    sort_util::sort_test(randow_, range, sortFunc<int>(&HeapSort::heap_sort<int>), len);
 
-    delete[] randow_;
+    delete randow_;
 }

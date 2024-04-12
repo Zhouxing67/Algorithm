@@ -1,6 +1,6 @@
 #ifndef QUICK3WAY_H_INCLUDED
 #define QUICK3WAY_H_INCLUDED
-#include"Base_sort.h"
+#include"../alg4def.h"
 /*
 三向快速排序
 每次递归将 小数组首元素相同的元素放在相邻位置
@@ -33,7 +33,9 @@ namespace alg4::sort
             q3sort(nums, lo, lt - 1, comp);
             q3sort(nums, gt + 1, hi, comp);
         }
-
+        //partition的意义：
+        //1.一次划分操作将确定一个元素在序列里的位置。同时可以将区间分为不相交的两个部分
+        //2. 对于一次划分的返回结果j: i < j < k, 则nums[i] < nums[j] == pivot < nums[K];
         template<typename T>
         static pos_t partition(T nums[], pos_t lo, pos_t hi, comparableFunc<T> comp)
         {
@@ -66,13 +68,13 @@ namespace alg4::sort
 
     public:
         template<typename T>
-        static void q3sort(T nums[], const size_t size, comparableFunc<T> comp = std::less<T>())
+        static void quick3way_sort(T nums[], const size_t size, comparableFunc<T> comp = std::less<T>())
         {
             q3sort(nums, 0, size - 1, comp);
         }
 
         template<typename T>
-        static void qsort(T nums[], const size_t size, comparableFunc<T> comp = std::less<T>())
+        static void quick_sort(T nums[], const size_t size, comparableFunc<T> comp = std::less<T>())
         {
             qsort(nums, 0, size - 1, comp);
         }

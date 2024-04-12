@@ -6,10 +6,10 @@
 #include <random>
 #include <ctime>
 #include "../time_record.h"
-#include "Base_sort.h"
+#include "../alg4def.h"
 using std::size_t;
 
-namespace alg4::sort
+namespace alg4::util
 {
     const size_t DEAFAULT_LEN = 1000000;
 
@@ -17,7 +17,7 @@ namespace alg4::sort
     using RangeType = std::pair<T, T>;
 
     const RangeType<int> DEAFAULT_INT_RANGE{ -999999, 999999 };
-    const RangeType<double> DEAFAULT_double_RANGE{ -999999.0, 999999.0 };
+    const RangeType<double> DEAFAULT_DOUBLE_RANGE{ -999999.0, 999999.0 };
     const RangeType<float> DEAFAULT_FLOAT_RANGE{ -9999.0f, 9999.0f };
     const RangeType<char> DEAFAULT_CHAR_RANGE{ -128, 127 };
 
@@ -49,13 +49,19 @@ namespace alg4::sort
         template<typename T>
         static void sort_test(T arr[], RangeType<T> range, sortFunc<T> sort, size_t size = DEAFAULT_LEN, comparableFunc<T> comp = std::less<int>())
         {
+            static size_t times = 0;
+            times++;
+            std::cout << "The " << times << " times      ";
             generateRandomArray(arr, range, size);
             {
                 time_recorder recorder;
                 sort(arr, size, comp);
             }
             bool issorted = isSorted(arr, size);
-            std::cout << "Issorted :" << (issorted ? "true" : "false") << std::endl;
+            if (issorted)
+                std::cout << "Issorted : " << ANSI_COLOR_GREEN << "True" << ANSI_COLOR_RESET << std::endl;
+            else
+                std::cout << "Issorted : " << ANSI_COLOR_RED << "False" << ANSI_COLOR_RESET << std::endl;
         }
     };
 }

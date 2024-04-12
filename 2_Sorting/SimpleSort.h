@@ -1,6 +1,6 @@
 #ifndef SIMPLE_SORT_INCLUDE_H
 #define SIMPLE_SORT_INCLUDE_H
-#include "Base_sort.h"
+#include "../alg4def.h"
 namespace alg4::sort
 {
     class SimpleSort {
