@@ -5,15 +5,15 @@
 
 namespace alg4::list
 {
-    template<typename T>
+    template<typename T, typename comparef = std::less<T>>
     class PriortyQue {
     private:
         T* data_;
         size_t maxSize_ = 0;
         size_t size_ = 0;
-        comparableFunc<T> comp_;
+        comparef comp_;
 
-        static void sink(size_t k)
+        void sink(size_t k)
         {
             while (k * 2 <= maxSize_) {
                 size_t j = 2 * k;
@@ -26,16 +26,20 @@ namespace alg4::list
             }
         }
 
-        static void swim(size_t k)
+        void swim(size_t k)
         {
             while (k > 1 && comp_(data_[k / 2], data_[k])) {
                 std::swap(data_[k / 2], data_[k]);
                 k /= 2;
             }
         }
-
+        void  check(size_t i)
+        {
+            if (i > size_)
+                throw std::runtime_error("Out of range");
+        }
     public:
-        explicit PriortyQue(size_t len, comparableFunc<T> comp = std::less<T>())
+        explicit PriortyQue(size_t len, comparef comp = comparef())
             : maxSize_(len), data_(new T[len + 1]), comp_(comp)
         {}
 
@@ -66,20 +70,37 @@ namespace alg4::list
             swim(data_, size_, comp_);
         }
 
-        bool empty()
+        const T& at(size_t i) const
         {
-            return size_ == 0;
+            check(i);
+            return data_[i];
         }
 
-        bool full()
+        void update(size_t i, const T& val)
         {
-            return size_ == maxSize_;
+            check(i);
+            bool isless = comp_(val, data_[i]);
+            data_[i] = val;
+            if (isless)
+                sink(i);
+            else
+                swim(i);
         }
 
-        size_t maxSize_() const
+        void erase(size_t i)
         {
-            return size_;
+            check(i);
+            data_[i] = data_[1] + 1;
+            sink(i);
+            pop();
+
         }
+
+        bool empty() { return size_ == 0; }
+
+        bool full(){return size_ == maxSize_;}
+
+        size_t maxSize_() const{return size_;}
     };
 
 }
