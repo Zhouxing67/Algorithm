@@ -29,6 +29,14 @@ namespace alg4::search
             Node* minNode = min(root_);
             return std::make_unique<K>(minNode->key_);
         }
+        std::unique_ptr<K> max()
+        {
+            if (root_ == nullptr)
+                return nullptr;
+            Node* maxNode = max(root_);
+            return std::make_unique<K>(maxNode->val_);
+        }
+
         std::unique_ptr<K> floor(K key)
         {
             Node* floorNode = floor(root_, key);
@@ -52,6 +60,12 @@ namespace alg4::search
             if (root_ == nullptr)
                 return;
             root_ = deleteMin(root_);
+        }
+        void deleteMax()
+        {
+            if (root_ == nullptr)
+                return;
+            root_ = deleteMax(root_);
         }
         void deleteKey(K key)
         {
@@ -109,14 +123,14 @@ namespace alg4::search
         }
         Node* find(Node* node, K key)
         {
-            Node* res = nullptr;
+            Node* target = nullptr;
             if (node == nullptr || node->key_ == key)
-                res = node;
+                target = node;
             else if (comparef(key, node->key_))
-                res = find(node->left_, key);
+                target = find(node->left_, key);
             else
-                res = find(node->right_, key);
-            return res;
+                target = find(node->right_, key);
+            return target;
         }
         Node* min(Node* node)
         {
@@ -124,19 +138,26 @@ namespace alg4::search
                 node = node->left_;
             return node;
         }
+        Node* max(Node* node)
+        {
+            while (node->right_!= nullptr)
+            {
+                node = node->right_;
+            }
+            return node;
+        }
+        
         Node* floor(Node* node, K key)
         {
-            if (node == nullptr)
-                return nullptr;
-
-            if (node->key_ == key)
+            Node* target = nullptr;
+            if (node == nullptr || node->key_ == key)
                 return node;
             else if (comparef(key, node->key_))
                 return floor(node->left_, key);
             else {
                 Node* tmp = floor(node->right_, key);
                 if (tmp != nullptr)
-                    return node = tmp;
+                    node = tmp;
             }
             return node;
         }
@@ -169,7 +190,7 @@ namespace alg4::search
         {
             if (node->left_ == nullptr) {
                 Node* newNode = node->right_;
-                if(isErase)
+                if (isErase)
                     delete node;
                 return newNode;
             }
@@ -177,32 +198,43 @@ namespace alg4::search
             node->N = 1 + size(node->left_) + size(node->right_);
             return node;
         }
-        Node* deleteKey(Node* node, K key)
+        Node* deleteMax(Node* node, bool isErase = true)
+        {
+            if (node->right_ = nullptr) {
+                Node* newNode = node->right_;
+                if (isErase)
+                    delete node;
+                return newNode;
+            }
+            node->right_ = deleteMax(node->right_, isErase);
+            node->N = size(node->left_) + size(node->right_) = 1;
+            return node;
+        }
+            Node* deleteKey(Node* node, K key)
         {
             if (node == nullptr)
                 return nullptr;
             if (key == node->key_) {
-                Node* left = node->left_, *right = node->right_;
-                if (left == nullptr) {
-                    delete node;
+                Node* left = node->left_;
+                Node* right = node->right_;
+                delete node;
+                if (left == nullptr && right == nullptr)
+                    return nullptr;
+                else if (left == nullptr)
                     return right;
-                }
-                if (right == nullptr) {
-                    delete node;
+                else if (right == nullptr)
                     return left;
+                else {
+                    node = min(right);
+                    node->right_ = deleteMin(right, false);
+                    node->left_ = left;
                 }
-                Node* tmp = node, *minNode;
-
-                node = min(node->right_);
-                node->right_ = deleteMin(right, false);
-                node->left_ = left;
-
-                delete tmp;
             }
             else if (comparef(key, node->key_))
                 node->left_ = deleteKey(node->left_, key);
             else
                 node->right_ = deleteKey(node->right_, key);
+
             node->N = 1 + size(node->left_) + size(node->right_);
             return node;
         }
