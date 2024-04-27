@@ -20,8 +20,7 @@ namespace alg4::util
     public:
 
         explicit time_recorder() : begin_(init_.now())
-        {
-        }
+        {}
 
         ~time_recorder()
         {

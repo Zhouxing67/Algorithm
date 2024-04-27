@@ -42,7 +42,7 @@ namespace alg4::sort
                 step = step * 3 + 1;
 
             while (step > 0) {
-                for (size_t i = 1; i < size; i++) {
+                for (size_t i = step; i < size; i++) {
                     T val = nums[i];
                     size_t j = i;
                     for (; j >= step && comp(val, nums[j - step]); j -= step)

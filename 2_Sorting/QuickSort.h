@@ -21,6 +21,10 @@ namespace alg4::sort
             size_t lt = lo, gt = hi, i = lo + 1;
 
             T pivot = nums[lo];
+            //循环不变量：
+            //(lt <= k < i) nums[k] == pivot
+            //(j >= gt + 1) nums[j] > pivot
+            //nums[i], nums[gt]与pivot的大小关系未知
             while (i <= gt) {
                 if (comp(nums[i], pivot))
                     std::swap(nums[lt++], nums[i++]);
@@ -29,7 +33,8 @@ namespace alg4::sort
                 else
                     i++;
             }
-            //得到  nums[lo..lt-1] < pivot=nums[lt..gt] < nums[gt+1...hi]
+            //循环结束后，gt < i
+            //得到  nums[lo...lt-1] < pivot=nums[lt...gt] < nums[gt+1...hi]
             q3sort(nums, lo, lt - 1, comp);
             q3sort(nums, gt + 1, hi, comp);
         }
@@ -51,7 +56,7 @@ namespace alg4::sort
                     std::swap(nums[i], nums[j]);
             }
             //循环结束后i == j吗
-            std::swap(nums[j], pivot);
+            std::swap(nums[j], nums[lo]);
             return j;
         }
 

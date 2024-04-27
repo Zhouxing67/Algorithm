@@ -7,6 +7,8 @@
 #include <ctime>
 #include "../time_record.h"
 #include "../alg4def.h"
+#include <algorithm>
+
 using std::size_t;
 
 namespace alg4::util
@@ -21,19 +23,11 @@ namespace alg4::util
     const RangeType<float> DEAFAULT_FLOAT_RANGE{ -9999.0f, 9999.0f };
     const RangeType<char> DEAFAULT_CHAR_RANGE{ -128, 127 };
 
+    RangeType<unsigned int> genUintRange(unsigned max) { return { 0, max }; }
+
     class sort_util {
     public:
-        template<typename T>
-        static bool isSorted(const T arr[], size_t size = DEAFAULT_LEN, comparableFunc<T> comp = std::less<T>())
-        {
-            for (size_t i = 1; i < size; ++i) {
-                if (comp(arr[i], arr[i - 1])) {
-                    return false;
-                }
-            }
-            return true;
-        }
-
+    
         // 生成指定范围的随机数组
         template<typename T>
         static void generateRandomArray(T arr[], RangeType<T> range, size_t size = DEAFAULT_LEN)
@@ -47,22 +41,29 @@ namespace alg4::util
         }
 
         template<typename T>
-        static void sort_test(T arr[], RangeType<T> range, sortFunc<T> sort, size_t size = DEAFAULT_LEN, comparableFunc<T> comp = std::less<int>())
+        static void sort_test(T arr[], RangeType<T> range, sortFunc<T> sort, size_t size = DEAFAULT_LEN, comparableFunc<T> comp = std::less<T>())
         {
             static size_t times = 0;
             times++;
-            std::cout << "The " << times << " times      ";
+            std::cout << "The " << times << " times test     ";
+
             generateRandomArray(arr, range, size);
             {
                 time_recorder recorder;
                 sort(arr, size, comp);
             }
-            bool issorted = isSorted(arr, size);
-            if (issorted)
-                std::cout << "Issorted : " << ANSI_COLOR_GREEN << "True" << ANSI_COLOR_RESET << std::endl;
-            else
-                std::cout << "Issorted : " << ANSI_COLOR_RED << "False" << ANSI_COLOR_RESET << std::endl;
+            checkisSorted(arr, size);
         }
+
+         template<typename T>
+         static void checkArrayisSorted(T* arr, size_t size, comparableFunc<T> comp = std::less<T>())
+         {
+             bool issorted = std::is_sorted(arr, arr + size, comp);
+             if (issorted)
+                 std::cout << "Issorted : " << ANSI_COLOR_GREEN << "True" << ANSI_COLOR_RESET << std::endl;
+             else
+                 std::cout << "Issorted : " << ANSI_COLOR_RED << "False" << ANSI_COLOR_RESET << std::endl;
+         }
     };
 }
 
