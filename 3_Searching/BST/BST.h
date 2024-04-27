@@ -13,11 +13,11 @@ namespace alg4::search
         }
 
         size_t size() { return size(root_); }
-        void update(K key, V val) { root_ = update(root_, key, val); }
+        void put(K key, V val) { root_ = put(root_, key, val); }
 
-        std::unique_ptr<V> find(K key)
+        std::unique_ptr<V> get(K key)
         {
-            Node* node = find(root_, key);
+            Node* node = get(root_, key);
             if (node == nullptr)
                 return nullptr;
             return std::make_unique<V>(node->val_);
@@ -67,9 +67,9 @@ namespace alg4::search
                 return;
             root_ = deleteMax(root_);
         }
-        void deleteKey(K key)
+        void del(K key)
         {
-            root_ = deleteKey(root_, key);
+            root_ = del(root_, key);
         }
     private:
         struct Node
@@ -107,29 +107,29 @@ namespace alg4::search
                 return 0;
             return node->N;
         }
-        Node* update(Node* node, K key, V val)
+        Node* put(Node* node, K key, V val)
         {
             if (node == nullptr)
                 return new Node(key, val);
             if (node->key_ == key)
                 node->val_ = val;
             else if (comparef(key, node->key_))
-                node->left_ = update(node->left_, key, val);
+                node->left_ = put(node->left_, key, val);
             else
-                node->right_ = update(node->right_, key, val);
+                node->right_ = put(node->right_, key, val);
 
             node->N = size(node->left_) + size(node->right_) + 1;
             return node;
         }
-        Node* find(Node* node, K key)
+        Node* get(Node* node, K key)
         {
             Node* target = nullptr;
             if (node == nullptr || node->key_ == key)
                 target = node;
             else if (comparef(key, node->key_))
-                target = find(node->left_, key);
+                target = get(node->left_, key);
             else
-                target = find(node->right_, key);
+                target = get(node->right_, key);
             return target;
         }
         Node* min(Node* node)
@@ -210,7 +210,7 @@ namespace alg4::search
             node->N = size(node->left_) + size(node->right_) = 1;
             return node;
         }
-            Node* deleteKey(Node* node, K key)
+            Node* del(Node* node, K key)
         {
             if (node == nullptr)
                 return nullptr;
@@ -231,9 +231,9 @@ namespace alg4::search
                 }
             }
             else if (comparef(key, node->key_))
-                node->left_ = deleteKey(node->left_, key);
+                node->left_ = del(node->left_, key);
             else
-                node->right_ = deleteKey(node->right_, key);
+                node->right_ = del(node->right_, key);
 
             node->N = 1 + size(node->left_) + size(node->right_);
             return node;
@@ -243,4 +243,5 @@ namespace alg4::search
     template<typename K, typename V, typename Comp>
     Comp BST<K, V, Comp>::comparef;
 }
+
 #endif

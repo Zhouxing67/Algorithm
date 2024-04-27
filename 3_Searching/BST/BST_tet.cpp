@@ -9,29 +9,29 @@ int main()
     BST<int, int> bst;
 
     // 插入一些键值对
-    bst.update(5, 50);
-    bst.update(3, 30);
-    bst.update(7, 70);
-    bst.update(2, 20);
-    bst.update(4, 40);
-    bst.update(6, 60);
-    bst.update(8, 80);
+    bst.put(5, 50);
+    bst.put(3, 30);
+    bst.put(7, 70);
+    bst.put(2, 20);
+    bst.put(4, 40);
+    bst.put(6, 60);
+    bst.put(8, 80);
 
     assert(bst.size() == 7);
 
     // 测试查找功能
-    assert(*bst.find(5) == 50);
-    assert(*bst.find(2) == 20);
-    assert(bst.find(10) == nullptr); // 不存在的键
+    assert(*bst.get(5) == 50);
+    assert(*bst.get(2) == 20);
+    assert(bst.get(10) == nullptr); // 不存在的键
 
-    bst.update(5, 40);
-    bst.update(2, 10);
-    assert(*bst.find(5) == 40);
-    assert(*bst.find(2) == 10);
+    bst.put(5, 40);
+    bst.put(2, 10);
+    assert(*bst.get(5) == 40);
+    assert(*bst.get(2) == 10);
 
     //测试删除功能
-    bst.deleteKey(5);
-    assert(bst.find(5) == nullptr);
+    bst.del(5);
+    assert(bst.get(5) == nullptr);
     assert(bst.size() == 6);
     // 测试最小值功能
     assert(*bst.min() == 2);

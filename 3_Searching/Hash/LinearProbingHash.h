@@ -7,7 +7,7 @@ using std::allocator;
 namespace alg4::search
 {
     template<typename K, typename V>
-    class LinearHash : public baseHash<K, V>
+    class LinearHash : public Hash<K, V>
     {
     public:
         explicit LinearHash()

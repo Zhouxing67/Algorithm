@@ -18,7 +18,7 @@ namespace alg4::search
             root_ = put(root_, key, val);
             root_->col_ = Color::BLACK;
         }
-        std::unique_ptr<V> find(K key)
+        std::unique_ptr<V> get(K key)
         {
             Node* node = find(root_, key);
             if (node == nullptr) return nullptr;
