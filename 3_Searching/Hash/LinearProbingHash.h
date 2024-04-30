@@ -1,5 +1,5 @@
-#ifndef LINEARPROBINGHASH_INCLUDE_H
-#define LINEARPROBINGHASH_INCLUDE_H
+#ifndef LINEAR_PROBING_HASH_INCLUDE_H
+#define LINEAR_PROBING_HASH_INCLUDE_H
 #include "Hash.h"
 #include <cstring>
 
@@ -60,7 +60,7 @@ namespace alg4::search
 
         size_t linerProbe(const K& obj, size_t Size)
         {
-            size_t pos = this->hash_(obj) / Size;
+            size_t pos = this->hash_(obj) % Size;
             while (data_[pos] != nullptr) {
                 pos = (pos + 1) % Size;
             }
@@ -69,7 +69,7 @@ namespace alg4::search
 
         long long findPos(const K& key)
         {
-            size_t pos = this->hash_(key) / this->M_;
+            size_t pos = this->hash_(key) % this->M_;
             while (data_[pos] != nullptr && data_[pos]->first != key)
                 pos = (pos + 1) % this->M_;
 

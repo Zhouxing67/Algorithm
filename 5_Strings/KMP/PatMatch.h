@@ -18,103 +18,95 @@ namespace alg4::str
     private:
         string pat_;
         size_t R_;
-        vector<vector<int>> dfa_;
-        vector<int> next_;
-
-        void init_next()
-        {
-            next_.resize(R_, -1);
-            for (auto i = 0; i < pat_.size(); i++) {
-                char chr = pat_[i];
-                next_[chr] = i;
-            }
-        }
-
-        void init_dfa()
-        {
-            dfa_.resize(R_, vector<int>(pat_.size(), 0));
-            dfa_[pat_[0]][0] = 1;//X表示重启状态
-            for (int X = 0, j = 1; j < pat_.size(); j++) {
-                // 不匹配
-                for (size_t chr = 0; chr < R_; chr++)
-                    dfa_[chr][j] = dfa_[chr][X];
-                // 匹配
-                dfa_[pat_[j]][j] = j + 1;
-                //更新重启状态
-                X = dfa_[pat_[j]][X];
-            }
-        }
-
+       
     public:
         PatMatch(const string& pat, size_t R = std::numeric_limits<char>::max()) : pat_(pat), R_(R)
         {
             if (pat_.size() == 0)
                 std::__throw_logic_error("Empty pattern is not allowed");
-            init_dfa();
-            init_next();
         }
+        virtual int find(const string& str) = 0;
+        
+        const string& pat() const { return pat_; }
+        const size_t& R() const { return R_; }
+    };
 
-        int kmp_find(const string& str)
-        {
-            int i = 0, j = 0;
-            for (; j < pat_.size() && i < str.size(); i++)
-                j = dfa_[str.at(i)][j];
-            if (j == pat_.size())
-                return i - pat_.size();
-            return str.size();
-        }
 
-        int bm_find(const string& str)
+
+    class Kmp : public PatMatch {
+    private:
+        //dfa_[chr][j] 表示在chr与模式串pat_[j]比较后，与chr的下一个字符相比较的模式串的字符索引
+        vector<vector<int>> dfa_;
+        void init_dfa()
         {
-            int i = 0, j = pat_.size() - 1;
-            while ( i < str.size()) {
-                while (j >= 0 && pat_[j] == str[i + j])
-                    j--;
-                if (j == -1)
-                    return i;
-                int skip = j - next_[str[i + j]];
-                if (skip < 1)
-                    skip = 1;
-                
-                i += skip;
-                j = pat_.size() - 1;
+            string pat = this->pat();
+
+            dfa_.resize(this->R(), vector<int>(pat.size(), 0));
+            dfa_[pat[0]][0] = 1;//X表示重启状态
+            for (int X = 0, j = 1; j < pat.size(); j++) {
+                // 不匹配
+                for (size_t chr = 0; chr < this->R(); chr++)
+                    dfa_[chr][j] = dfa_[chr][X];
+                // 匹配
+                dfa_[pat[j]][j] = j + 1;
+                //更新重启状态
+                X = dfa_[pat[j]][X];
             }
+        }
+    public:
+        Kmp(const string& pat) : PatMatch(pat)
+        {
+            init_dfa();
+        }
+
+        int find(const string& str)
+        {
+            string pat = this->pat();
+            int i = 0, j = 0;
+            for (; j < pat.size() && i < str.size(); i++)
+                j = dfa_[str.at(i)][j];
+            if (j == pat.size())
+                return i - pat.size();
             return str.size();
         }
 
         const vector<vector<int>>& dfa() const { return dfa_; }
-
-        const string & pat() const { return pat_; }
     };
 
-    std::pair<char, char> bound(const string& str)
-    {
-        char min = 127, max = 0;
-        for (auto chr : str)
+    class Bm : public PatMatch {
+    private:
+        vector<int> next_;
+        void init_next()
         {
-            min = min < chr ? min : chr;
-            max = max > chr ? max : chr;
+            string pat = this->pat();
+            next_.resize(this->R(), -1);
+            for (auto i = 0; i < pat.size(); i++) {
+                char chr = pat[i];
+                next_[chr] = i;
+            }
         }
-        return { min, max };
-    }
-
-    void show_dfa_(const PatMatch& patmat)
-    {
-        auto dfa_ = patmat.dfa();
-        cout << "    ";
-        for (size_t i = 0; i < patmat.pat().size(); i++)
-            cout << i << " ";
-        cout << endl;
-
-        auto range = bound(patmat.pat());
-        for (char chr = range.first; chr <= range.second; chr++)
+    public:
+        Bm(const string& pat) : PatMatch(pat)
         {
-            cout << chr << " : ";
-            for (auto i : dfa_[chr])
-                cout << i << " ";
-            cout << endl;
+            init_next();
         }
-        cout << endl;
-    }
+
+        int find(const string& str) override
+        {
+            string pat = this->pat();
+            int i = 0;
+            while (i < str.size()) {
+                int j = pat.size() - 1;
+                while (j >= 0 && pat[j] == str[i + j])
+                    j--;
+                if (j == -1) return i;
+                int skip = j < next_[str[i + j]] ? 1 : (j - next_[str[i + j]]);
+                i += skip;
+            }
+            return str.size();
+        }
+
+    };
 }
+
 #endif

@@ -18,7 +18,7 @@ namespace alg4::search
         size_t row_;
         size_t col_;
     public:
-        SparseMatrix(const vector<vector<T>> &vet, T tolerance)
+        SparseMatrix(const vector<vector<T>>& vet, T tolerance)
         {
             if (vet.size() == 0)
                 throw std::invalid_argument("empty vector is invalid");
@@ -37,29 +37,34 @@ namespace alg4::search
 
         }
 
-        vector<T> operator*(const vector<T>& vet)
-        {
-            if (vet.size() != col_)
-                throw std::invalid_argument("invalid vector for mutiply");
-            vector<T> res;
-            for (size_t j = 0; j < row_; j++) {
-                auto umap = data_[j];
-                T tmp = 0;
-                if (umap.size() != 0)
-                    for (size_t i = 0; i < col_; i++) {
-                        if (umap.find(i) != umap.end())
-                            tmp += vet[i] * umap[i];
-                    }
-                res.push_back(tmp);
-            }
-            return res;
-        }
-
-        std::pair<size_t, size_t> shape() const
-        {
-            return std::make_pair(row_, col_);
-        }
+        const size_t row() const { return row_; }
+        const size_t col() const { return col_; }
+        const vector<unordered_map<size_t, T>>& data() const { return data_; }
+        const std::pair<size_t, size_t> shape() const { return std::make_pair(row_, col_); }
     };
+
+    
+    template<typename T>
+    vector<T> operator*(const SparseMatrix<T>mat, const vector<T>& vet)
+    {
+        if (vet.size() != mat.col())
+            throw std::invalid_argument("invalid vector for mutiply");
+        vector<T> res;
+        for (size_t j = 0; j < mat.row(); j++) {
+            auto umap = mat.data()[j];
+            T tmp = 0;
+            if (umap.size() != 0)
+                for (size_t i = 0; i < mat.col(); i++) {
+                    if (umap.find(i) != umap.end())
+                        tmp += vet[i] * umap[i];
+                }
+            res.push_back(tmp);
+        }
+        return res;
+    }
+
+
+
 }
 
 
