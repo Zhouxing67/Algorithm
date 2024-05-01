@@ -1,6 +1,6 @@
 #include "util.h"
 
-std::pair<char, char> alg4::util::bound(const string& str)
+std::pair<char, char> alg4::util::range(const string& str)
 {
     char min = 127, max = 0;
     for (auto chr : str) {
@@ -18,8 +18,8 @@ void alg4::util::show_dfa_(const Kmp& kmp)
         cout << i << " ";
     cout << endl;
 
-    auto range = bound(kmp.pat());
-    for (char chr = range.first; chr <= range.second; chr++) {
+    std::pair<char, char> ran = range(kmp.pat());
+    for (char chr = ran.first; chr <= ran.second; chr++) {
         cout << chr << " : ";
         for (auto i : dfa_[chr])
             cout << i << " ";

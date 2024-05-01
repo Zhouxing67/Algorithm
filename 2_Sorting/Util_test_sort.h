@@ -1,12 +1,13 @@
-#ifndef SORT_TEST_UTIL
-#define SORT_TEST_UTIL
+#ifndef UTIL_SORT_H
+#define UTIL_SORT_H
 
 #include <cstddef>
 #include <stdexcept>
 #include <random>
 #include <ctime>
 #include "../time_record.h"
-#include "../alg4def.h"
+#include "../type_def.h"
+#include "../color_def.h"
 #include <algorithm>
 
 using std::size_t;

@@ -5,8 +5,6 @@
 #include "../Utility.h"
 #include <utility>
 
-using alg4::copy;
-using alg4::Allocator;
 
 
 namespace alg4::List

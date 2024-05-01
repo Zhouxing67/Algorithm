@@ -1,8 +1,8 @@
-#include "util.h"
+#include "util_func.h"
+
 bool alg4::util::compare(const string& oringal_data, const string& expand_data)
 {
-    ifstream ifs0(oringal_data);
-    ifstream ifs1(expand_data);
+    ifstream ifs0(oringal_data), ifs1(expand_data);
     while (ifs0 && ifs1) {
         char oringal_byte, expand_byte;
         ifs0.get(oringal_byte);
@@ -13,23 +13,28 @@ bool alg4::util::compare(const string& oringal_data, const string& expand_data)
             return false;
         }
     }
-    if (!ifs0.eof())
-        return false;
-    if (!ifs1.eof())
-        return false;
+    if (!ifs0.eof()) return false;
+    if (!ifs1.eof()) return false;
     ifs0.close();
     ifs1.close();
     return true;
 }
 
-vector<int> alg4::util::readOneByte(char Byte, size_t bitnum = 1)
+vector<char> alg4::util::readByte(unsigned char Byte, size_t bitnum)
 {
-    vector<int> vet;
+    vector<char> vet;
     for (int i = 8 - bitnum; i >= 0; i -= bitnum) {
-
         //关键代码，掩码：(1 << bitnum) - 1
-        int val = (Byte >> i) & ((1 << bitnum) - 1);
+        char val = (Byte >> i) & ((1 << bitnum) - 1);
         vet.push_back(val);
     }
     return vet;
 }
+
+vector<char> alg4::util::readOneBit(unsigned char Byte)
+{
+    return alg4::util::readByte(Byte, 1);
+}
+
+
+

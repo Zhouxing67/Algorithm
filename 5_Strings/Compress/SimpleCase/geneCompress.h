@@ -1,7 +1,6 @@
 #ifndef GENE_COMPRESS_H
 #define GENE_COMPRESS_H
 #include <fstream>
-#include "../Bit.h"
 #include "../util.h"
 #include <bitset>
 #include <unordered_map>
@@ -12,8 +11,8 @@ using std::ofstream;
 using std::unordered_map;
 namespace alg4::str
 {
-    using alg4::util::BitWrite;
-    using alg4::util::readOneByte;
+    using alg4::util::StreamBitOut;
+    using alg4::util::readByte;
 
     const unordered_map<char, bitset<2>> Serialization{
         {'A', bitset<2>(0)},
@@ -41,7 +40,7 @@ namespace alg4::str
                 throw std::invalid_argument("Oringal data is not existed");
             ofstream ofs(compressfile_, std::ios::binary);
 
-            BitWrite bw(ofs);
+            StreamBitOut bw(ofs);
             while (ifs) {
                 char nucleobase;
                 ifs.get(nucleobase);
@@ -67,7 +66,7 @@ namespace alg4::str
             {
                 char byte;
                 ifs.get(byte);
-                vector<int> nucleobase = readOneByte(byte, 2);
+                vector<char> nucleobase = readByte(byte, 2);
                 for (size_t i = 0; i < nucleobase.size() && len_; i++)
                 {
                     len_--;

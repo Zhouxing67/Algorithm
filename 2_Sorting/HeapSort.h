@@ -1,7 +1,7 @@
-#ifndef HEAPSORT_H_INCLUDED
-#define HEAPSORT_H_INCLUDED
+#ifndef HEAPSORT_H
+#define HEAPSORT_H
 #include"../base_include.h"
-#include"../alg4def.h"
+#include"../type_def.h"
 
 /*
 堆排序

@@ -5,7 +5,7 @@
 namespace alg4::util
 {
     using alg4::str::Kmp;
-    std::pair<char, char> bound(const string& str);
+    std::pair<char, char> range(const string& str);
     void show_dfa_(const Kmp& kmp);
 }
 #endif
