@@ -2,33 +2,40 @@
 #include <fstream>
 #include "StreamBitIn.h" // Assuming StreamBitIn.h contains the class declaration
 #include "StreamBitOut.h"
-
-int main()
+//g++ test.cpp StreamBItIn.cpp StreamBitOut.cpp -o test
+int main(int argc, char* argv[])
 {
     // Open a file for reading
-    std::ofstream ofs("a.txt");
-    ofs << '\0';
-    alg4::util::StreamBitOut bw(ofs);
-    bw.writeOneBit(0);
-    bw.writeOneBit(0);
-    bw.writeOneBit(1);
-    bw.writeOneBit(1);
-    bw.writeOneByte('a');//01100001
-    bw.writeOneBit(0);
-    bw.writeOneBit(0);
-    bw.writeOneBit(0);
-    bw.writeOneBit(1);
-    bw.close();
-    ofs.close();
 
-    std::ifstream ifs("a.txt");
+    std::ifstream ifs(argv[1]);
     alg4::util::StreamBitIn br(ifs);
     bool bit;
-   for(int i = 0; i < 16; i++)
+    char byte;
+   
+    std::cout << std::endl;
+    while (1)
+    //for(int i = 0; i< 64; i++)
     {
-        br.readBit(bit);
-        std::cout << bit << " ";
+        if(br.readBit(bit))
+            std::cout << bit << " ";
+        else
+            break;
     }
-    
 
+    std::cout <<std:: endl;
+    std::ofstream ofs("write.txt");
+    alg4::util::StreamBitOut bw(ofs);
+
+    bw.writeOneBit(1);
+    bw.writeOneBit(0);
+    bw.writeOneBit(1);
+    bw.writeOneBit(0);
+    bw.writeOneBit(1);
+
+    bw.close();
+    ofs.close();
+    std::ifstream ifs2("write.txt");
+    alg4::util::StreamBitIn br2(ifs2);
+    while(br2.readBit(bit))
+        std::cout << bit << " ";
 }

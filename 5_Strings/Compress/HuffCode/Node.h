@@ -1,5 +1,8 @@
 #ifndef NODE_H
 #define NODE_H
+#include <iostream>
+using std::cout;
+using std::endl;
 
 namespace alg4::str
 {
@@ -19,16 +22,7 @@ namespace alg4::str
         Node(char chr, int freq) : chr_(chr), freq_(freq)
         {}
 
-        bool operator< (Node* other)
-        {
-            return freq_ < other->freq_;
-        }
-
-
-        bool isleaf()
-        {
-            return left_ == nullptr && right_ == nullptr;
-        }
+        bool isleaf() {return left_ == nullptr && right_ == nullptr;}
 
         ~Node()
         {
@@ -38,7 +32,12 @@ namespace alg4::str
             right_ = nullptr;
         }
     };
-
-    /* Node* root_ = nullptr; */
+    
+    struct Node_cmp {
+        bool operator() (const Node* left, const Node* right)
+        {
+            return left->freq_ > right->freq_;
+        }
+    };
 }
 #endif

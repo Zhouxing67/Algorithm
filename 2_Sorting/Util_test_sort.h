@@ -53,7 +53,7 @@ namespace alg4::util
                 time_recorder recorder;
                 sort(arr, size, comp);
             }
-            checkisSorted(arr, size);
+            checkArrayisSorted(arr, size);
         }
 
          template<typename T>

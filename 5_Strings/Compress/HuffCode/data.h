@@ -15,70 +15,19 @@ using std::ofstream;
 
 namespace alg4::str
 {
-    /*
-    unordered_map<char, int> char_freq;
-    priority_queue<Node*> pq_node;
-    */
-    
+
+    typedef priority_queue<Node*,std::vector<Node*>, Node_cmp> Node_pq;
     //统计频率
-    void init_char_freq(string filename, unordered_map<char, int>& freqs, size_t &chr_num)
-    {
-        char chr;
-        ifstream ifs(filename);
-        if (!ifs)
-            throw std::runtime_error("Open file failed");
-        while (ifs) {
-            ifs.get(chr);
-            if (chr >= 'A' || chr <= 'z' || chr == ' ' || chr == '\n') {
-                if (freqs.find(chr) != freqs.end())
-                    freqs[chr]++;
-                else
-                    freqs[chr] = 1;
-                chr_num++;
-            }
-        }
-    }
-
+    void init_char_freq(ifstream & ifs, unordered_map<char, int>& freqs);
     //初始优先队列
-    void init_pq_node(priority_queue<Node*>& pq, const unordered_map<char, int>& freqs)
-    {
-        for (const auto& [chr, freq] : freqs)
-            pq.push(new Node(chr, freq));
-    }
-
+    void init_pq_node(Node_pq& pq, const unordered_map<char, int>& freqs);
     //建树
-    void init_tire(Node*& root, priority_queue<Node*> pq)
-    {
-        Node* left = nullptr, * right = nullptr;
-        while (pq.size() > 1) {
-            left = pq.top();
-            pq.pop();
-            right = pq.top();
-            pq.pop();
-            pq.push(new Node(left, right, left->freq_ + right->freq_));
-        }
-        root = pq.top();
-    }
-
+    void init_tire(Node*& root, Node_pq pq);
     //编码
-    void init_codes(unordered_map<char, string>& codes, Node* root, string& code)
-    {
-        if (root->isleaf())
-        {
-            codes.insert({ root->chr_, code });
-            return;
-        }
-        if (root->left_ != nullptr) {
-            code.push_back('0');
-            init_codes(codes, root->left_, code);
-            code.pop_back();
-        }
-        if (root->right_ != nullptr) {
-            code.push_back('1');
-            init_codes(codes, root->right_, code);
-            code.pop_back();
-        }
-    }
+    void encode(unordered_map<char, string>& codes, Node* root, string& code);
+    //构造字节流
+    void init_data(ifstream& ifs, string& str, unordered_map<char, string>& codes);
+
 }
 
 

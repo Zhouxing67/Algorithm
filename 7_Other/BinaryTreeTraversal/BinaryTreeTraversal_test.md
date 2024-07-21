@@ -84,11 +84,15 @@ void pre_order(Node* root)
                 visit(current);
                 //先压入右孩子，在压入左孩子
                 if (current->right_)  nodes.push(current->right_);
-                if (current->left_)     nodes.push(current->left_);
+                if (current->left_)   nodes.push(current->left_);
             }
         }
 ```
 
+前序遍历的可能序列个数即为序列{1,...,n}的可能出栈序列个数，为卡特兰数：
+$$
+C_{n}=\frac{(2 n)!}{(n+1)!n!}=\frac{1}{n+1} C_{2 n}^{n}
+$$
 
 
 ### **2. 迭代法中序遍历：**
