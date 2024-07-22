@@ -4,10 +4,8 @@ void alg4::str::init_char_freq(ifstream & ifs, unordered_map<char, int>& freqs)
 {
     char chr;
     while (ifs.get(chr)) {
-        if (chr >= 'A' || chr <= 'z' || chr == ' ' || chr == '\n' || chr >= '0' || chr <= '9') {
-            if (freqs.find(chr) != freqs.end())
-                freqs[chr]++;
-        }
+        if (chr >= 'A' || chr <= 'z' || chr == ' ' || chr == '\n' || chr >= '0' || chr <= '9')
+            freqs[chr]++;
     }
 }
 
