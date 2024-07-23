@@ -1,7 +1,7 @@
 #ifndef KRUSKALMST_H_INCLUDED
 #define KRUSKALMST_H_INCLUDED
 #include"EdgeWeightedGraph.h"
-#include"../4_0_Union_Found/UnionFind.h"
+#include"../Union_Found/UnionFind.h"
 /*
 克鲁斯卡尔
 idea: 不断从所有边中寻找最小值,要求不能构成环路(不在同一个连通集)

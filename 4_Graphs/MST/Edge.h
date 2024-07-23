@@ -1,7 +1,7 @@
 #ifndef EDGE_H_INCLUDED
 #define EDGE_H_INCLUDED
 
-#include"../../base_include.h"
+#include"../../util/base_include.h"
 /*
 有权重的无向图
 边

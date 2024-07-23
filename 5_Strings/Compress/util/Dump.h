@@ -1,5 +1,6 @@
-#ifndef DUMP_H
-#define DUMP_H
+#ifndef DUMP_HPP
+#define DUMP_HPP
+
 #include <fstream>
 #include <string>
 #include <vector>

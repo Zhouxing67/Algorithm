@@ -1,7 +1,7 @@
 #ifndef HEAPSORT_H
 #define HEAPSORT_H
-#include"../base_include.h"
-#include"../type_def.h"
+
+#include"type_def.h"
 
 /*
 堆排序

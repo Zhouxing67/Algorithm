@@ -38,9 +38,9 @@ int main()
 
     sort_util::sort_test(randow_, range, sortFunc<int>(SimpleSort::insert_sort<int>), len);
 
-    sort_util::sort_test(randow_, range, sortFunc<int>(SimpleSort::select_sort<int>), len);
-
     sort_util::sort_test(randow_, range, sortFunc<int>(SimpleSort::bubble_sort<int>), len);
+
+    sort_util::sort_test(randow_, range, sortFunc<int>(SimpleSort::select_sort<int>), len);
 
     sort_util::sort_test(randow_, range, sortFunc<int>(MergeSort::merge_sort<int>), len);
 

@@ -1,6 +1,6 @@
 #ifndef QUICK_SORT_H
 #define QUICK_SORT_H
-#include"../type_def.h"
+#include"type_def.h"
 /*
 三向快速排序
 每次递归将 小数组首元素相同的元素放在相邻位置

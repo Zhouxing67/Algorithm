@@ -1,7 +1,7 @@
 #ifndef GRAPH_H_INCLUDED
 #define GRAPH_H_INCLUDED
 
-#include "../../base_include.h"
+#include "../../util/base_include.h"
 
 namespace alg4::graph
 {
@@ -19,13 +19,13 @@ namespace alg4::graph
         Graph(int v) :V(v), E(0) { adj.resize(v, vector<int>()); };
         Graph(string file)
         {
-            std::ifstream infile(file);
+            ifstream infile(file);
             string tmp;
             int lineNum = 0;
             if (!infile.is_open())
                 throw std::runtime_error("文件打开失败");
-            while (std::getline(infile, tmp)) {
-                std::istringstream iss(tmp);
+            while (getline(infile, tmp)) {
+                istringstream iss(tmp);
                 int v1, v2;
                 if (lineNum == 0) {
                     iss >> V;

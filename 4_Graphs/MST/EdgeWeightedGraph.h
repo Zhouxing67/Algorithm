@@ -1,6 +1,6 @@
 #ifndef EDGEWEIGHTEDGRAPH_H_INCLUDED
 #define EDGEWEIGHTEDGRAPH_H_INCLUDED
-#include "../../base_include.h"
+#include "../../util/base_include.h"
 #include"Edge.h"
 /*
 实现带带权重的无向图

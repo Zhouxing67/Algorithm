@@ -1,6 +1,6 @@
 #ifndef TRAVERSAL_BASE
 #define TRAVERSAL_BASE
-#include "../../base_include.h"
+#include "../../util/base_include.h"
 #include "Graph.h"
 namespace alg4::graph
 {

@@ -1,6 +1,6 @@
 #ifndef UNIONFIND_H_INCLUDED
 #define UNIONFIND_H_INCLUDED
-#include"../../base_include.h"
+#include"../../util/base_include.h"
 /*
 实现weighted union find
 小树加入大树 从而减少树的高度

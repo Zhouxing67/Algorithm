@@ -1,6 +1,6 @@
 #ifndef MERGE_SORT_H
 #define MERGE_SORT_H
-#include "../type_def.h"
+#include "type_def.h"
 
 namespace alg4::sort
 {

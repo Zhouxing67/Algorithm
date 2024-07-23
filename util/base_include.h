@@ -35,6 +35,10 @@ using std::unordered_set;
 using std::queue;
 using std::priority_queue;
 using std::pair;
+using std::getline;
+using std::ifstream;
+using std::ofstream;
+using std::istringstream;
 
 
 #endif // __FUNC__

@@ -1,6 +1,7 @@
 #ifndef DIGRAPH_H_INCLUDED
 #define DIGRAPH_H_INCLUDED
-#include "../../base_include.h"
+#include "../../../util/base_include.h"
+
 
 namespace alg4::graph
 {
@@ -20,10 +21,10 @@ namespace alg4::graph
         };
         Digraph(string file)
         {
-            std::ifstream infile(file);
+            ifstream infile(file);
             string tmp;
             int lineNum = 0;
-            while (std::getline(infile, tmp)) {
+            while (getline(infile, tmp)) {
                 std::istringstream iss(tmp);
                 int v1, v2;
                 if (lineNum == 0) {

@@ -1,6 +1,6 @@
 #ifndef DIEDGE_H_INCLUDED
 #define DIEDGE_H_INCLUDED
-#include "../../base_include.h"
+#include "../../util/base_include.h"
 /*
 区别于无向边,v->w == v,w具有固定的含义
 API from v to w

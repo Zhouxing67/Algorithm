@@ -5,9 +5,9 @@
 #include <stdexcept>
 #include <random>
 #include <ctime>
-#include "../time_record.h"
-#include "../type_def.h"
-#include "../color_def.h"
+#include "../util/time_record.h"
+#include "type_def.h"
+#include "../util/color_def.h"
 #include <algorithm>
 
 using std::size_t;

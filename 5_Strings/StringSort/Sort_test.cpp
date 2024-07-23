@@ -1,7 +1,6 @@
 #include"CountSort.h"
 #include"Quick3WayString.h"
 #include"../../2_Sorting/Util_test_sort.h"
-#include"../../alg4def.h"
 #include <algorithm>
 using namespace alg4::str;
 using namespace alg4::util;
