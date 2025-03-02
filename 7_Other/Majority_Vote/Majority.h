@@ -13,7 +13,7 @@
 #ifndef MAJORITY_INCLUDE_H
 #define MAJORITY_INCLUDE_H
 
-#include "../../base_include.h"
+#include "../../util/base_include.h"
 
 namespace alg4
 {

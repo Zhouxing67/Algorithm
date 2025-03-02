@@ -49,14 +49,25 @@ void alg4::str::encode(unordered_map<char, string>& codes, Node* root, string& c
     }
 }
 
+void alg4::str::reserve_code(const unordered_map<char, int>& freqs, const unordered_map<char, string>& codes, string & str)
+{
+    size_t bits = 0;
+    for ( auto& [chr, freq] : freqs)
+    {
+        auto code = codes.find(chr)->second;
+        bits += freq * code.size();
+    }
+    str.reserve(bits);
+}
+
+
 void alg4::str::init_data(ifstream& ifs, string& str, unordered_map<char, string>& codes)
 {
-    str.clear();
     char chr;
     while (ifs.get(chr))
     {
-        if (codes.find(chr) != codes.end())
-            str += codes[chr];
+        if (auto itr = codes.find(chr); itr != codes.end())
+            str.append(itr->second);
     }
 
 }

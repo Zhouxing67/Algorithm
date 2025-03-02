@@ -1,23 +1,29 @@
 #include "Huffcode.h"
 using alg4::str::Node;
 
-string huf_file = "./data/compress.huf";
-char to_byte(string&& str)
+namespace
 {
-    int byte = 0;
-    for (int weight = 1, i = str.size() - 1; i >= 0; i--, weight *= 2) {
-        byte += (str[i] - '0') * weight;
+    const string huf_file = "./data/compress.huf";
+
+    char to_byte(string&& str)
+    {
+        int byte = 0;
+        for (int weight = 1, i = str.size() - 1; i >= 0; i--, weight *= 2) {
+            byte += (str[i] - '0') * weight;
+        }
+        return byte;
     }
-    return byte;
+
+    void to_code(char byte, std::string& code)
+    {
+        code.resize(8);  // 确保字符串有足够的长度
+        for (int i = 7; i >= 0; --i) {
+            code[7 - i] = ((byte >> i) & 1) ? '1' : '0';
+        }
+    }
 }
 
-void to_code(char byte, std::string& code)
-{
-    code.resize(8);  // 确保字符串有足够的长度
-    for (int i = 7; i >= 0; --i) {
-        code[7 - i] = ((byte >> i) & 1) ? '1' : '0';
-    }
-}
+
 
 void alg4::str::compress(const string& data, int& zeros)
 {
@@ -65,8 +71,7 @@ void alg4::str::expand(int zeros, Node* tie_root, const string& filename)
             cur = cur->left_;
         else
             cur = cur->right_;
-        if (cur->isleaf())
-        {
+        if (cur->isleaf()) {
             ofs.put(cur->chr_);
             cur = tie_root;
         }

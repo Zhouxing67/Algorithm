@@ -1,6 +1,6 @@
 #ifndef PRIME_NUM_INCLUDE
 #define PRIME_NUM_INCLUDE
-#include "../../base_include.h"
+#include "../../util/base_include.h"
 namespace alg4
 {
     //欧拉筛

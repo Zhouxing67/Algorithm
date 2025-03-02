@@ -19,12 +19,12 @@ namespace alg4::graph
         Graph(int v) :V(v), E(0) { adj.resize(v, vector<int>()); };
         Graph(string file)
         {
-            ifstream infile(file);
+            ifstream ifs(file);
             string tmp;
             int lineNum = 0;
-            if (!infile.is_open())
+            if (!ifs.is_open())
                 throw std::runtime_error("文件打开失败");
-            while (getline(infile, tmp)) {
+            while (getline(ifs, tmp)) {
                 istringstream iss(tmp);
                 int v1, v2;
                 if (lineNum == 0) {
@@ -39,6 +39,7 @@ namespace alg4::graph
                 }
                 lineNum++;
             }
+            ifs.close();
         };
         int getV() { return V; }
         int getE() { return E; }

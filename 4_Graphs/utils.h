@@ -24,6 +24,10 @@ namespace alg4::graph
             auto it = minPQ.find(v);
             minPQ.erase(it);
         }
+
+        static void read_from_file(const string file)
     };
+
+    
 }
 #endif

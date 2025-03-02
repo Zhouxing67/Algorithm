@@ -25,6 +25,8 @@ namespace alg4::str
     void init_tire(Node*& root, Node_pq pq);
     //编码
     void encode(unordered_map<char, string>& codes, Node* root, string& code);
+    //计算压缩文件的bit数,预分配这么长的字符串
+    void reserve_code(const unordered_map<char, int>& freqs, const unordered_map<char, string>& codes, string & str);
     //构造字节流
     void init_data(ifstream& ifs, string& str, unordered_map<char, string>& codes);
 

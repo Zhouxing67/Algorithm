@@ -145,10 +145,10 @@ namespace alg4::str
                 return size;
             if (d == query.size())
                 return d;
-            if (node.val != nullptr)
+            if (node->val != nullptr)
                 size = d;
             char c = query[d];
-            return longestPrefixOf(node.next[c], query, d + 1, size);
+            return longestPrefixOf(node->next[c], query, d + 1, size);
         }
 
         void collect(Node* node, string prefix, vector<string>& results)

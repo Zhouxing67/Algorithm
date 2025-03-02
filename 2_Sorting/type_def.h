@@ -5,7 +5,7 @@
 namespace alg4
 {
     template<typename T>
-    using comparableFunc = std::function<bool(T, T)>;
+    using comparableFunc = std::function<bool(const T&, const T&)>;
 
     template<typename T>
     using sortFunc = std::function<void(T[], size_t, comparableFunc<T>)>;

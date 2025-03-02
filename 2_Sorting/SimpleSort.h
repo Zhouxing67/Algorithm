@@ -26,8 +26,8 @@ namespace alg4::sort
         static void insert_sort(T nums[], const size_t size, comparableFunc<T> comp = std::less<T>())
         {
             for (size_t i = 1; i < size; i++) {
-                size_t j = i;
                 T val = nums[i];
+                size_t j = i;
                 for (; j >= 1 && comp(val, nums[j - 1]); j--)
                     nums[j] = nums[j - 1];
                 nums[j] = val;
@@ -37,14 +37,16 @@ namespace alg4::sort
         template<typename T>
         static void shell_sort(T nums[], const size_t size, comparableFunc<T> comp = std::less<T>())
         {
+            //生成增量
             int step = 1;
             while (step < size / 3)
                 step = step * 3 + 1;
 
+            //缩小增量插入排序
             while (step > 0) {
-                for (size_t i = step; i < size; i++) {
-                    T val = nums[i];
+                 for (size_t i = step; i < size; i++) {
                     size_t j = i;
+                    T val = nums[i];
                     for (; j >= step && comp(val, nums[j - step]); j -= step)
                         nums[j] = nums[j - step];
                     nums[j] = val;
