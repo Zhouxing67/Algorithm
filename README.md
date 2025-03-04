@@ -1,2 +1,2 @@
 # 使用说明  
-本项目C++实现基础算法库,重构于Algorithm4th java代码  
+本项目使用C++重构了部分Algorithm4th java代码  
